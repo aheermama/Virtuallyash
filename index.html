@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtually, Ash - Your Secret Weapon for Business Bliss!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Primary & Secondary Pinks for high attention */
+            --brand-pink-primary: #d41491;
+            --brand-pink-secondary: #b318b0;
+
+            /* Dark, luxurious backgrounds */
+            --brand-dark-plum: #371c3b; /* Main page background */
+            --brand-darkest-green: #282b23; /* Contrasting dark sections/cards */
+
+            /* Vibrant Accents */
+            --brand-emerald-green: #0c7c59;
+            --brand-purple: #6022a4;
+
+            /* Supporting Dark & Muted Tones */
+            --brand-dark-teal: #345860; /* For borders or subtle backgrounds */
+            --brand-indigo: #302f98; /* Can be used for deep accents if needed */
+
+            /* Text Colors */
+            --text-light: #f3f4f6; /* Light gray for text on dark bg */
+            --text-muted: #a1a1aa; /* Muted gray for less prominent text */
+
+            /* For Button Animation */
+            --brand-pink-primary-shadow: rgba(212, 20, 145, 0.4);
+            --brand-pink-primary-pulse: rgba(212, 20, 145, 0.5);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: var(--brand-dark-plum);
+            color: var(--text-light);
+        }
+        .font-display { font-family: 'Playfair Display', serif; }
+        .font-script { font-family: 'Pacifico', cursive; }
+
+        .hero-bg {
+            background-color: var(--brand-darkest-green); /* Using darkest green for hero contrast */
+        }
+
+        @keyframes pulseAnimation {
+          0% { transform: scale(1); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06), 0 0 0 0px var(--brand-pink-primary-pulse); }
+          70% { transform: scale(1.03); box-shadow: 0 10px 15px -3px var(--brand-pink-primary-shadow), 0 4px 6px -2px var(--brand-pink-primary-shadow), 0 0 5px 10px rgba(212, 20, 145, 0); }
+          100% { transform: scale(1); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06), 0 0 0 0px rgba(212, 20, 145, 0); }
+        }
+
+        .btn-primary {
+            @apply inline-block bg-[var(--brand-pink-primary)] text-white font-semibold py-4 px-10 rounded-lg shadow-lg transition duration-300 ease-in-out text-lg;
+            animation: pulseAnimation 2.5s infinite cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        .btn-primary:hover {
+            @apply bg-[var(--brand-pink-secondary)];
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 15px 30px -5px var(--brand-pink-primary-shadow);
+            animation-play-state: paused; /* Optional: pause animation on hover */
+        }
+
+        .btn-secondary-outline {
+             @apply inline-block bg-transparent border-2 border-[var(--brand-emerald-green)] hover:bg-[var(--brand-emerald-green)] text-[var(--brand-emerald-green)] hover:text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-[var(--brand-emerald-green)]/30 transition duration-300 ease-in-out transform hover:-translate-y-0.5;
+        }
+        .section-card {
+            background-color: var(--brand-darkest-green);
+            border: 1px solid var(--brand-dark-teal);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Added border-color transition */
+        }
+        .section-card:hover {
+            transform: translateY(-8px); /* Slightly more lift */
+            box-shadow: 0 12px 30px rgba(212, 20, 145, 0.40); /* Enhanced Pink shadow on hover */
+            border-color: var(--brand-pink-primary);
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .svg-icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.125em;
+            fill: currentColor; /* Make sure currentColor is default */
+        }
+        .svg-icon-lg { width: 1.5em; height: 1.5em; }
+        .svg-icon-xl { width: 2em; height: 2em; }
+        .svg-icon-2xl { width: 3em; height: 3em; }
+        .svg-icon-3xl { width: 4em; height: 4em; }
+        .svg-icon-4xl { width: 5em; height: 5em; }
+        .svg-icon-5xl { width: 6em; height: 6em; }
+
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="graphic-butterfly" viewBox="0 0 100 80">
+            <path fill="var(--brand-pink-primary)" d="M50 40 C 20 10, 20 70, 50 40 Z M50 40 C 80 10, 80 70, 50 40 Z" transform="rotate(15 50 40)">
+                <animateTransform attributeName="transform" type="rotate" from="15 50 40" to="-15 50 40" dur="1.5s" repeatCount="indefinite" additive="sum" accumulate="sum"/>
+            </path>
+            <path fill="var(--brand-pink-secondary)" d="M50 40 C 30 20, 30 60, 50 40 Z M50 40 C 70 20, 70 60, 50 40 Z" transform="rotate(-10 50 40)">
+                 <animateTransform attributeName="transform" type="rotate" from="-10 50 40" to="10 50 40" dur="1.7s" repeatCount="indefinite" additive="sum" accumulate="sum"/>
+            </path>
+            <circle cx="50" cy="40" r="3" fill="var(--brand-purple)"/>
+            <line x1="50" y1="30" x2="50" y2="20" stroke="var(--brand-purple)" stroke-width="1"/>
+            <line x1="50" y1="30" x2="45" y2="22" stroke="var(--brand-purple)" stroke-width="1"/>
+            <line x1="50" y1="30" x2="55" y2="22" stroke="var(--brand-purple)" stroke-width="1"/>
+        </symbol>
+
+        <symbol id="graphic-flower-bloom" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="10" fill="var(--brand-purple)"/>
+            <path fill="var(--brand-pink-primary)" d="M50 10 A 40 40 0 0 1 90 50 A 40 40 0 0 1 50 90 A 40 40 0 0 1 10 50 A 40 40 0 0 1 50 10 Z" transform="scale(0.8) translate(12.5 12.5)">
+                 <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="20s" repeatCount="indefinite"/>
+            </path>
+            <path fill="var(--brand-pink-secondary)" d="M50 20 A 30 30 0 0 1 80 50 A 30 30 0 0 1 50 80 A 30 30 0 0 1 20 50 A 30 30 0 0 1 50 20 Z" opacity="0.7" transform="scale(0.7) translate(21.5 21.5) rotate(45 50 50)">
+                <animateTransform attributeName="transform" type="rotate" from="45 50 50" to="405 50 50" dur="25s" repeatCount="indefinite"/>
+            </path>
+        </symbol>
+
+        <symbol id="graphic-leaf" viewBox="0 0 24 24"> <path fill="var(--brand-emerald-green)" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zM17 7H7c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-1 8H8v-2h8v2zm0-3H8V9h8v3z"/>
+        </symbol>
+
+        <symbol id="icon-sparkle-alt" viewBox="0 0 24 24">
+            <path d="M12 2.3l.94 2.86h3.02l-2.43 1.76.94 2.86-2.43-1.76-2.43 1.76.94-2.86-2.43-1.76h3.02L12 2.3m0-2.3L10.05 4.85l-4.7.43 3.6 3.28-1.1 4.7L12 10.9l4.15 2.36-1.1-4.7 3.6-3.28-4.7-.43L12 0z M19.5 10l.94 2.86h3.02l-2.43 1.76.94 2.86-2.43-1.76-2.43 1.76.94-2.86-2.43-1.76h3.02L19.5 10m0-2.3L17.55 12.55l-4.7.43 3.6 3.28-1.1 4.7L19.5 18.6l4.15 2.36-1.1-4.7 3.6-3.28-4.7-.43L19.5 7.7z" fill="currentColor"/>
+        </symbol>
+         <symbol id="icon-magic-wand" viewBox="0 0 24 24"> <path d="M20.71 6.29l-3-3a1 1 0 00-1.42 0l-2.29 2.29L12.29 7A1 1 0 0011 7H4a1 1 0 000 2h6.29l1.71 1.71L3.29 20.71a1 1 0 000 1.42 1 1 0 001.42 0L14 12.41l1.29 1.3L17 15.41l4.29-4.29a1 1 0 000-1.42l-1.58-1.58L21.41 8l1.3-1.29a1 1 0 00-.02-1.42zM16.59 10L13 6.41l1-1L17.59 9l-1 1zM6 18.59L10.59 14L12 15.41L7.41 20L6 18.59z" fill="currentColor"/>
+            <polygon points="23 1, 22 0, 20 2, 22 4, 23 3, 24 4, 22 6, 24 5, 23 6" fill="var(--brand-pink-primary)" opacity="0.7"/>
+        </symbol>
+        <symbol id="icon-testimonial-quote" viewBox="0 0 24 24">
+             <path d="M13 17H10V14L8 10V7H14V10L12 14M6 17H3V7H9V10L7 14V17Z" fill="currentColor"/>
+        </symbol>
+        <symbol id="icon-inbox-nightmare" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4.67l-8 5.33l-8-5.33V6.67l8 5.33l8-5.33v2zM4.5 15.5l1.5 1.5L7.5 15.5l-1.5-1.5zm3 3l1.5 1.5L10.5 18.5l-1.5-1.5zm3 0l1.5 1.5L13.5 18.5l-1.5-1.5z" fill="currentColor"/>
+        </symbol>
+        <symbol id="icon-schedule-scramble" viewBox="0 0 24 24">
+            <path d="M19 3h-1V2c0-.55-.45-1-1-1s-1 .45-1 1v1H8V2c0-.55-.45-1-1-1s-1 .45-1 1v1H5c-1.11 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 15H7V9h10v9zM9 11h2v2H9zm4 0h2v2h-2zm-4 4h2v2H9zm4 0h2v2h-2z M4.18 5.53l-1.42 1.42L5.59 9.79l-2.83 2.83l1.42 1.42L7 11.21l2.83 2.83l1.42-1.42L8.41 9.79l2.83-2.83l-1.42-1.42L7 8.36z" fill="currentColor"/>
+        </symbol>
+         <symbol id="icon-creative-spark" viewBox="0 0 24 24"> <path d="M12 2C9.24 2 7 4.24 7 7c0 2.25 1.75 4.12 4 4.74V14H9v2h2v2.26C8.03 18.84 6 20.62 6 22.5c0 .83.67 1.5 1.5 1.5h9c.83 0 1.5-.67 1.5-1.5c0-1.88-2.03-3.66-4.98-4.24V16h2v-2h-2v-2.26c2.25-.62 4-2.49 4-4.74c0-2.76-2.24-5-5-5m0 2c1.66 0 3 1.34 3 3s-1.34 3-3 3s-3-1.34-3-3s1.34-3 3-3m-1.35 8.5h2.7L12 15l-1.35-2.5M9.65 13.5L12 11l2.35 2.5L12 16l-2.35-2.5z" fill="currentColor"/>
+            <path fill="var(--brand-pink-primary)" opacity="0.7" d="M12,6a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0V7A1,1,0,0,0,12,6Zm4.24,1.76a1,1,0,0,0-1.41,0L13,9.59V8a1,1,0,0,0-2,0v3a1,1,0,0,0,.29.71l2.41,2.41a1,1,0,0,0,1.41-1.41L13.41,11l1.83-1.83A1,1,0,0,0,16.24,7.76ZM7.76,7.76a1,1,0,0,0,0,1.41L9.59,11l-1.83,1.83a1,1,0,1,0,1.41,1.41l2.41-2.41A1,1,0,0,0,12,11V8a1,1,0,0,0-2,0v1.59L8.17,9.17A1,1,0,0,0,7.76,7.76Z"/>
+        </symbol>
+    </svg>
+
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[var(--brand-darkest-green)] bg-opacity-80 backdrop-blur-md shadow-lg">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-script text-[var(--brand-pink-primary)] hover:text-[var(--brand-pink-secondary)] transition-colors duration-300">Virtually, Ash</a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#services" class="text-[var(--text-light)] hover:text-[var(--brand-emerald-green)] transition-colors duration-300">Services</a>
+                <a href="#about" class="text-[var(--text-light)] hover:text-[var(--brand-emerald-green)] transition-colors duration-300">About Ash</a>
+                <a href="#testimonials" class="text-[var(--text-light)] hover:text-[var(--brand-emerald-green)] transition-colors duration-300">Raves</a>
+                <a href="https://calendly.com/virtually-ash2025" target="_blank" rel="noopener noreferrer" class="btn-secondary-outline text-sm py-2 px-4">Book a Call</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-[var(--brand-pink-primary)] hover:text-[var(--brand-emerald-green)] focus:outline-none" aria-label="Open menu">
+                    <svg class="svg-icon svg-icon-lg" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-[var(--brand-dark-plum)] bg-opacity-95">
+            <a href="#services" class="block py-3 px-6 text-[var(--text-light)] hover:bg-[var(--brand-emerald-green)] hover:text-white transition">Services</a>
+            <a href="#about" class="block py-3 px-6 text-[var(--text-light)] hover:bg-[var(--brand-emerald-green)] hover:text-white transition">About Ash</a>
+            <a href="#testimonials" class="block py-3 px-6 text-[var(--text-light)] hover:bg-[var(--brand-emerald-green)] hover:text-white transition">Raves</a>
+            <a href="https://calendly.com/virtually-ash2025" target="_blank" rel="noopener noreferrer" class="block py-3 px-6 text-[var(--brand-pink-primary)] font-semibold hover:bg-[var(--brand-pink-secondary)] hover:text-white transition">Book a Sparkle Call!</a>
+        </div>
+    </nav>
+
+    <header class="hero-bg pt-32 pb-20 md:pt-48 md:pb-32 text-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <svg class="svg-icon w-full h-full text-[var(--brand-pink-secondary)] opacity-50" viewBox="0 0 100 80"><use xlink:href="#graphic-butterfly"></use></svg>
+        </div>
+        <div class="relative z-10 container mx-auto px-6">
+            <svg class="svg-icon svg-icon-5xl mx-auto mb-6 text-[var(--brand-pink-primary)] animate-pulse" viewBox="0 0 100 80"><use xlink:href="#graphic-butterfly"></use></svg>
+            <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-bold text-[var(--brand-pink-primary)] mb-6">
+                Drowning in To-Dos? <span class="block font-script text-[var(--brand-pink-secondary)] text-6xl sm:text-7xl md:text-8xl mt-2">Virtually, Ash</span> to the Rescue!
+            </h1>
+            <p class="text-xl sm:text-2xl text-[var(--text-light)] mb-10 max-w-3xl mx-auto">
+                Stop stressing, start succeeding! I'm Ash, your personal biz fairy, ready to sprinkle some serious magic on your workload so you can focus on what you do best – being brilliant.
+            </p>
+            <a href="https://calendly.com/virtually-ash2025" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                Book Your FREE <span class="font-script text-white">Sparkle</span> Call!
+                <svg class="svg-icon ml-2 inline-block" viewBox="0 0 24 24"><use xlink:href="#icon-magic-wand"></use></svg>
+            </a>
+            <p class="mt-6 text-sm text-[var(--brand-pink-secondary)]">Let's chat! No strings, just solutions (and maybe a little sass).</p>
+        </div>
+    </header>
+
+    <section id="is-this-you" class="py-16 sm:py-24 fade-in-section">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-display text-4xl sm:text-5xl text-[var(--brand-pink-primary)] mb-4">Sound Familiar, <span class="font-script text-[var(--brand-pink-secondary)]">Gorgeous?</span></h2>
+            <p class="text-lg text-[var(--text-muted)] mb-12 max-w-2xl mx-auto">If your to-do list is longer than your lashes and "overwhelm" is your middle name...</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="section-card p-8 rounded-xl">
+                    <svg class="svg-icon svg-icon-2xl text-[var(--brand-emerald-green)] mb-6" viewBox="0 0 24 24"><use xlink:href="#icon-inbox-nightmare"></use></svg>
+                    <h3 class="text-2xl font-semibold text-[var(--brand-pink-primary)] mb-3">Inbox Nightmare?</h3>
+                    <p class="text-[var(--text-muted)]">Emails piling up faster than you can say "unsubscribe"?</p>
+                </div>
+                <div class="section-card p-8 rounded-xl">
+                    <svg class="svg-icon svg-icon-2xl text-[var(--brand-emerald-green)] mb-6" viewBox="0 0 24 24"><use xlink:href="#icon-schedule-scramble"></use></svg>
+                    <h3 class="text-2xl font-semibold text-[var(--brand-pink-primary)] mb-3">Schedule Scramble?</h3>
+                    <p class="text-[var(--text-muted)]">Your calendar looks like a toddler's art project?</p>
+                </div>
+                <div class="section-card p-8 rounded-xl">
+                    <svg class="svg-icon svg-icon-2xl text-[var(--brand-emerald-green)] mb-6" viewBox="0 0 24 24"><use xlink:href="#icon-creative-spark"></use></svg>
+                    <h3 class="text-2xl font-semibold text-[var(--brand-pink-primary)] mb-3">Creative Spark Needed?</h3>
+                    <p class="text-[var(--text-muted)]">Too busy with admin to actually *create* and grow your empire?</p>
+                </div>
+            </div>
+            <p class="mt-12 text-xl text-[var(--brand-pink-secondary)]">Honey, you don't have to do it all alone. That's where <span class="text-[var(--brand-emerald-green)] font-semibold">I</span> come in!</p>
+        </div>
+    </section>
+
+    <section class="bg-[var(--brand-darkest-green)] py-16 sm:py-24 fade-in-section">
+        <div class="container mx-auto px-6 text-center">
+            <svg class="svg-icon svg-icon-3xl mx-auto mb-6 text-[var(--brand-pink-primary)]" viewBox="0 0 100 100"><use xlink:href="#graphic-flower-bloom"></use></svg>
+            <h2 class="font-display text-4xl sm:text-5xl text-[var(--brand-pink-primary)] mb-6">Imagine This, <span class="font-script text-[var(--brand-pink-secondary)]">Darling...</span></h2>
+            <div class="grid md:grid-cols-3 gap-8 text-left">
+                <div class="p-6 border-l-4 border-[var(--brand-emerald-green)] bg-[var(--brand-dark-plum)] rounded-r-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <svg class="svg-icon svg-icon-xl text-[var(--brand-purple)] mb-3" viewBox="0 0 24 24"><path fill="currentColor" d="M12 20a8 8 0 008-8 8 8 0 00-8-8 8 8 0 00-8 8 8 8 0 008 8m0-18A10 10 0 0122 12a10 10 0 01-10 10A10 10 0 012 12A10 10 0 0112 2M11 7h2v5h-2zm0 6h2v2h-2z"/></svg> <h3 class="text-xl font-semibold text-[var(--brand-pink-secondary)] mb-2">More "Me Time"</h3>
+                    <p class="text-[var(--text-muted)]">Sipping your coffee in peace, knowing the backend of your biz is handled.</p>
+                </div>
+                <div class="p-6 border-l-4 border-[var(--brand-emerald-green)] bg-[var(--brand-dark-plum)] rounded-r-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <svg class="svg-icon svg-icon-xl text-[var(--brand-purple)] mb-3" viewBox="0 0 24 24"><use xlink:href="#icon-sparkle-alt"></use></svg>
+                    <h3 class="text-xl font-semibold text-[var(--brand-pink-secondary)] mb-2">Creative Freedom</h3>
+                    <p class="text-[var(--text-muted)]">Finally focusing on those big, brilliant ideas that light you up.</p>
+                </div>
+                <div class="p-6 border-l-4 border-[var(--brand-emerald-green)] bg-[var(--brand-dark-plum)] rounded-r-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                     <svg class="svg-icon svg-icon-xl text-[var(--brand-purple)] mb-3" viewBox="0 0 24 24"><path fill="currentColor" d="M3.5 18.5c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2m17-14c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2m-17 0C2.4 4.5 1.5 5.4 1.5 6.5S2.4 8.5 3.5 8.5S5.5 7.6 5.5 6.5S4.6 4.5 3.5 4.5m12.65 3.28L18.5 5.5l-1.65 1.65l-1.41-1.41l-1.65 1.65l-1.65-1.65l-1.41 1.41L8.5 5.5l-2.33 2.33C5.47 8.53 5 9.47 5 10.5V16h14V7.5c0-1.03-.47-1.97-1.17-2.67l-2.35-2.35l-1.41 1.41l1.65 1.65l-1.65 1.65Z"/></svg> <h3 class="text-xl font-semibold text-[var(--brand-pink-secondary)] mb-2">Business Growth</h3>
+                    <p class="text-[var(--text-muted)]">Watching your empire expand because you're working smarter, not harder.</p>
+                </div>
+            </div>
+            <a href="https://calendly.com/virtually-ash2025" target="_blank" rel="noopener noreferrer" class="btn-primary mt-12">
+                Sound Like a Dream? Let's Make it Real!
+                <svg class="svg-icon ml-2 text-white inline-block" viewBox="0 0 24 24"><use xlink:href="#icon-magic-wand"></use></svg>
+            </a>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 sm:py-24 fade-in-section">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/3 mb-8 md:mb-0 text-center relative">
+                <div class="w-48 h-48 md:w-64 md:h-64 rounded-full bg-[var(--brand-pink-secondary)] border-4 border-[var(--brand-pink-primary)] mx-auto shadow-2xl flex items-center justify-center p-4 overflow-hidden">
+                     <svg class="svg-icon w-full h-full text-[var(--text-light)] transform scale-125" viewBox="0 0 100 80"><use xlink:href="#graphic-butterfly"></use></svg>
+                </div>
+                <svg class="svg-icon svg-icon-3xl absolute -bottom-4 -right-4 text-[var(--brand-emerald-green)] opacity-75 transform rotate-12" viewBox="0 0 100 80"><use xlink:href="#graphic-butterfly"></use></svg>
+            </div>
+            <div class="md:w-2/3 md:pl-12">
+                <h2 class="font-display text-4xl sm:text-5xl text-[var(--brand-pink-primary)] mb-4">Hey Gorgeous, I'm <span class="font-script text-[var(--brand-pink-secondary)]">Ash!</span></h2>
+                <p class="text-lg text-[var(--text-light)] mb-4">
+                    Your friendly neighborhood virtual assistant, chief chaos coordinator, and professional biz bestie. I'm not just about ticking off tasks; I'm about giving you back your time, your sanity, and your <span class="text-[var(--brand-emerald-green)] font-semibold">sparkle!</span>
+                </p>
+                <p class="text-lg text-[var(--text-light)] mb-4">
+                    With me, you get more than just support – you get a <span class="font-semibold text-[var(--brand-pink-primary)]">dedicated partner</span> who's genuinely invested in your success. I run this show solo, which means you get my undivided attention and expertise, every single time. No outsourcing, no run-around, just pure, personalized Ash magic.
+                </p>
+                <p class="text-lg text-[var(--text-light)] font-semibold text-[var(--brand-pink-secondary)]">
+                    Think of me as the secret ingredient to your business's <span class="text-[var(--brand-purple)]">glow-up!</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="bg-[var(--brand-darkest-green)] py-16 sm:py-24 fade-in-section">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-display text-4xl sm:text-5xl text-[var(--brand-pink-primary)] mb-12">How I <span class="font-script text-[var(--brand-pink-secondary)]">Sprinkle</span> My Magic...</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="section-card p-8 rounded-xl">
+                    <svg class="svg-icon svg-icon-2xl text-[var(--brand-purple)] mb-6" viewBox="0 0 24 24"><use xlink:href="#icon-sparkle-alt"></use></svg>
+                    <h3 class="text-2xl font-semibold text-[var(--brand-pink-primary)] mb-3">The Sparkle Starter</h3>
+                    <p class="text-[var(--text-muted)]">Perfect for when you need that initial boost to get organized and on track.</p>
+                </div>
+                <div class="section-card p-8 rounded-xl">
+                    <svg class="svg-icon svg-icon-2xl text-[var(--brand-purple)] mb-6" viewBox="0 0 24 24"><path fill="currentColor" d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6s6-2.69 6-6s-2.69-6-6-6m0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4s4 1.79 4 4s-1.79 4-4 4m3-4.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5m-6 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5s-.67 1.5-1.5 1.5m3-3c-.83 0-1.5-.67-1.5-1.5S11.17 4 12 4s1.5.67 1.5 1.5S12.83 7 12 7Z"/></svg> <h3 class="text-2xl font-semibold text-[var(--brand-pink-primary)] mb-3">The Growth Glow-Up</h3>
+                    <p class="text-[var(--text-muted)]">Ready to delegate consistently and watch your business truly blossom.</p>
+                </div>
+                <div class="section-card p-8 rounded-xl">
+                    <svg class="svg-icon svg-icon-2xl text-[var(--brand-purple)] mb-6" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2L9.19 8.63L2 9.24l5.46 4.73L5.82 21L12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2Z M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5m14.5 2c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5s1.5.67 1.5 1.5M6 19.5c.83 0 1.5-.67 1.5-1.5S6.83 16.5 6 16.5S4.5 17.17 4.5 18S5.17 19.5 6 19.5Z"/></svg> <h3 class="text-2xl font-semibold text-[var(--brand-pink-primary)] mb-3">The Empire Builder</h3>
+                    <p class="text-[var(--text-muted)]">For visionary queens needing comprehensive support to conquer their biggest goals.</p>
+                </div>
+            </div>
+            <p class="mt-10 text-lg text-[var(--brand-pink-secondary)]">And for those unique, one-off tasks? We'll whip up a <span class="font-semibold text-[var(--brand-emerald-green)]">"Project Pizzazz Package"</span> just for you!</p>
+            <a href="https://calendly.com/virtually-ash2025" target="_blank" rel="noopener noreferrer" class="btn-primary mt-12">
+                Find Your Perfect Fit - Let's Chat!
+                <svg class="svg-icon ml-2 text-white inline-block" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4m0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4Z"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <section class="py-16 sm:py-24 fade-in-section">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-display text-4xl sm:text-5xl text-[var(--brand-pink-primary)] mb-12">The Path to <span class="font-script text-[var(--brand-pink-secondary)]">Perfection</span> (It's Easy, Promise!)</h2>
+            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="flex flex-col items-center p-4">
+                    <div class="bg-[var(--brand-darkest-green)] border-2 border-[var(--brand-emerald-green)] text-[var(--brand-pink-primary)] rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-4 shadow-xl">1</div>
+                    <h3 class="text-xl font-semibold text-[var(--brand-pink-secondary)] mb-2">Spill the Tea Call</h3>
+                    <p class="text-[var(--text-muted)] text-sm">Book your FREE 30-min Sparkle Call. We'll dish about your biz & how I can help.</p>
+                </div>
+                <div class="flex flex-col items-center p-4">
+                    <div class="bg-[var(--brand-darkest-green)] border-2 border-[var(--brand-emerald-green)] text-[var(--brand-pink-primary)] rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-4 shadow-xl">2</div>
+                    <h3 class="text-xl font-semibold text-[var(--brand-pink-secondary)] mb-2">Fab Onboarding</h3>
+                    <p class="text-[var(--text-muted)] text-sm">My smooth setup gets us working like a dream team, ASAP. No fuss, all fabulous!</p>
+                </div>
+                <div class="flex flex-col items-center p-4">
+                    <div class="bg-[var(--brand-darkest-green)] border-2 border-[var(--brand-emerald-green)] text-[var(--brand-pink-primary)] rounded-full w-20 h-20 flex items-center justify-center text-3xl font-bold mb-4 shadow-xl">
+                        <svg class="svg-icon svg-icon-xl text-inherit"><use xlink:href="#icon-magic-wand"></use></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-[var(--brand-pink-secondary)] mb-2">Biz Fairy Magic!</h3>
+                    <p class="text-[var(--text-muted)] text-sm">Get dedicated, personalized support from me, Ash, to make your business shine!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="bg-[var(--brand-darkest-green)] py-16 sm:py-24 fade-in-section">
+        <div class="container mx-auto px-6">
+            <h2 class="font-display text-center text-4xl sm:text-5xl text-[var(--brand-pink-primary)] mb-12">What My <span class="font-script text-[var(--brand-pink-secondary)]">Fabulous</span> Clients Say...</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="section-card p-8 rounded-xl shadow-2xl border-l-4 border-[var(--brand-purple)]">
+                    <svg class="svg-icon svg-icon-2xl text-[var(--brand-purple)] mb-4 opacity-75" viewBox="0 0 24 24"><use xlink:href="#icon-testimonial-quote"></use></svg>
+                    <p class="text-[var(--text-light)] italic mb-4 text-lg">"Working with Ash was a game-changer! I finally have time to breathe and focus on growing my business. She's organized, proactive, and an absolute joy!"</p>
+                    <p class="text-[var(--brand-pink-primary)] font-semibold">- Sarah L., Creative Entrepreneur <svg class="svg-icon ml-1 text-[var(--brand-purple)] inline-block" viewBox="0 0 24 24"><use xlink:href="#icon-sparkle-alt"></use></svg></p>
+                </div>
+                <div class="section-card p-8 rounded-xl shadow-2xl border-l-4 border-[var(--brand-purple)]">
+                    <svg class="svg-icon svg-icon-2xl text-[var(--brand-purple)] mb-4 opacity-75" viewBox="0 0 24 24"><use xlink:href="#icon-testimonial-quote"></use></svg>
+                    <p class="text-[var(--text-light)] italic mb-4 text-lg">"I was drowning before Ash. Now, my inbox is tamed, my schedule makes sense, and I feel so much less stressed. Seriously, book a call with her!"</p>
+                    <p class="text-[var(--brand-pink-primary)] font-semibold">- Mike B., Small Business Owner <svg class="svg-icon ml-1 text-[var(--brand-purple)] inline-block" viewBox="0 0 24 24"><use xlink:href="#icon-sparkle-alt"></use></svg></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 sm:py-32 text-center fade-in-section bg-[var(--brand-dark-plum)]">
+        <div class="container mx-auto px-6">
+            <svg class="svg-icon svg-icon-4xl mx-auto mb-8 text-[var(--brand-pink-primary)]" viewBox="0 0 100 100"><use xlink:href="#graphic-flower-bloom"></use></svg>
+            <h2 class="font-display text-4xl sm:text-5xl md:text-6xl text-[var(--brand-pink-primary)] mb-6">Ready to Ditch the Drab & Embrace the <span class="font-script text-[var(--brand-pink-secondary)]">Fab?</span></h2>
+            <p class="text-xl text-[var(--text-light)] mb-10 max-w-2xl mx-auto">Your business (and your sanity) will thank you. Let's make some magic happen!</p>
+            <a href="https://calendly.com/virtually-ash2025" target="_blank" rel="noopener noreferrer" class="btn-primary text-xl py-5 px-12">
+                Book That FREE <span class="font-script text-white">Sparkle</span> Call NOW!
+                <svg class="svg-icon ml-2 text-white inline-block" viewBox="0 0 24 24"><use xlink:href="#icon-magic-wand"></use></svg>
+            </a>
+        </div>
+    </section>
+
+    <footer class="text-center py-10 border-t border-[var(--brand-dark-teal)]">
+        <p class="text-sm text-[var(--text-muted)] mb-2">
+            Virtually, Ash &copy; <span id="currentYear"></span>. All Rights Reserved.
+            <br>Made with <svg class="svg-icon text-[var(--brand-pink-primary)]" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35Z"/></svg>,
+            a sprinkle of sass, and a whole lotta <svg class="svg-icon text-[var(--brand-emerald-green)]" viewBox="0 0 24 24"><use xlink:href="#icon-sparkle-alt"></use></svg>.
+        </p>
+        <a href="mailto:virtually.ash2025@gmail.com" class="text-[var(--brand-pink-primary)] hover:text-[var(--brand-emerald-green)] font-script text-lg transition-colors duration-300">virtually.ash2025@gmail.com</a>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        const sections = document.querySelectorAll('.fade-in-section');
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptions);
+        sections.forEach(section => { observer.observe(section); });
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                // Optional: Add ARIA attribute for expanded state
+                const isExpanded = !mobileMenu.classList.contains('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', isExpanded.toString());
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+    </script>
+
+</body>
+</html>
